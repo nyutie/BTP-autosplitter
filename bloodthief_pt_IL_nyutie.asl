@@ -17,7 +17,7 @@ startup
             "This game uses Game Time (time without loads) as the main timing method.\n"+
             "LiveSplit is currently set to show Real Time (time INCLUDING loads).\n"+
             "Would you like the timing method to be set to Game Time for you?",
-            "SS-autosplitter | LiveSplit",
+            "BTP-autosplitter | LiveSplit",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question
         );
