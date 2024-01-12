@@ -27,6 +27,9 @@ startup
         );
         if (timingMessage == DialogResult.Yes) timer.CurrentTimingMethod = TimingMethod.GameTime;
     }
+
+    settings.Add("force_reset", true, "Force reset");
+    settings.SetToolTip("force_reset", "Will force reset the livesplit timer if the IGT is reset.");
 }
 
 init {
@@ -43,6 +46,15 @@ init {
     version = versionMap.TryGetValue(pckMD5Hash, out version) ? version : "pre-patch13";
 
     print("Version: '" + version + "' with hash '" + pckMD5Hash + "'");
+}
+
+update
+{
+    if (settings["force_reset"]
+        && current.timer < old.timer)
+    {
+        vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
+    }
 }
 
 start
