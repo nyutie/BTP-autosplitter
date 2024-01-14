@@ -44,7 +44,9 @@ startup
 init {
     var versionMap = new System.Collections.Generic.Dictionary<string, string>
     {
-        { "F26811B1A3289C7D1CEE268E15ADCC0F", "patch13" }
+        { "F26811B1A3289C7D1CEE268E15ADCC0F", "patch13" },
+        { "DBED6E2B572F57D4C981EE1B73EEE25B", "patch14" },
+        { "BE7590E4E8F9A51CF855A92E97AA908A", "patch15" }
     };
 
     string pckMD5Hash; // get hash of .pck file of game
