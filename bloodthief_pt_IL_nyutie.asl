@@ -1,9 +1,36 @@
-state("bloodthief_v0.01")
-{
-    // all of these pointers work on downpatches, probably will work on newer patches too. if not I'll add proper version control.
+state("bloodthief_v0.01", "pre-patch12") // ✔
+{ // all of these pointers work on downpatches, probably will work on newer patches too. if not I'll add proper version control. - I had to add proper verison control
     double timer: 0x43D9660, 0x248, 0x0, 0x70, 0x58, 0x98; 
     int checkpointID: 0x43D9660, 0x248, 0x0, 0x70, 0x58, 0xE0;
     bool isOnResultScreen: 0x43D9660, 0x280, 0x3D0, 0x10, 0x414;
+}
+
+state("bloodthief_v0.01", "patch12") // ✔
+{
+    double timer: 0x43D9660, 0x248, 0x0, 0x70, 0x58, 0x98;
+    int checkpointID: 0x43D9660, 0x248, 0x0, 0x70, 0x58, 0xE0;
+    bool isOnResultScreen: 0x43D9660, 0x280, 0x180, 0x10, 0x414;
+}
+
+state("bloodthief_v0.01", "patch13") // ✔
+{
+    double timer: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0x98;
+    int checkpointID: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xE0;
+    bool isOnResultScreen: 0x420DE40, 0x2B0, 0x178, 0x10, 0x40C;
+}
+
+state("bloodthief_v0.01", "patch14") // ✔
+{
+    double timer: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xB0;
+    int checkpointID: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xF8;
+    bool isOnResultScreen: 0x420DE40, 0x2B0, 0x178, 0x10, 0x40C;
+}
+
+state("bloodthief_v0.01", "patch15") // ✔
+{
+    double timer: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xB0;
+    int checkpointID: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xF8;
+    bool isOnResultScreen: 0x420DE40, 0x2B0, 0x178, 0x10, 0x40C;
 }
 
 startup
@@ -30,11 +57,29 @@ startup
     settings.SetToolTip("split_on_checkpoint_increase", "Will split whenever you get a higher checkpoint id.");
 }
 
-init {}
+init {
+    var versionMap = new System.Collections.Generic.Dictionary<string, string>
+    {
+        { "2399A6209172AAD3F9AE64939D1FCF68", "patch12" },
+        { "F26811B1A3289C7D1CEE268E15ADCC0F", "patch13" },
+        { "DBED6E2B572F57D4C981EE1B73EEE25B", "patch14" },
+        { "BE7590E4E8F9A51CF855A92E97AA908A", "patch15" }
+    };
+
+    string pckMD5Hash; // get hash of .pck file of game
+    using (var md5 = System.Security.Cryptography.MD5.Create())
+    using (var s = File.Open(modules.First().FileName.Replace("exe", "pck"), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+    pckMD5Hash = md5.ComputeHash(s).Select(x => x.ToString("X2")).Aggregate((a, b) => a + b);
+
+    version = versionMap.TryGetValue(pckMD5Hash, out version) ? version : "pre-patch12"; // if hash not found in dict, default to pre-patch12
+
+    print("Version: '" + version + "' with hash '" + pckMD5Hash + "'");
+}
 
 update
 {
-    if (current.timer < old.timer)  {
+    if (current.timer < old.timer) 
+    {
         vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
     }
 }
