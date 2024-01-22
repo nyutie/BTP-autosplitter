@@ -76,6 +76,9 @@ startup
     settings.SetToolTip("split_on_group", "Which of these events should trigger a split");
     settings.Add("split_on_checkpoint_increase", true, "Checkpoint get", "split_on_group");
     settings.SetToolTip("split_on_checkpoint_increase", "Will split whenever you get a higher checkpoint id.");
+
+    settings.Add("force_reset", true, "Force reset");
+    settings.SetToolTip("force_reset", "Will force reset the livesplit timer if the IGT is reset. (Normally if completed a run, the timer would reset only if do so manually. This forces it to reset when you restart in game.)");
 }
 
 init {
@@ -102,7 +105,8 @@ init {
 
 update
 {
-    if (current.timer < old.timer) 
+    if (settings["force_reset"]
+        && current.timer < old.timer)
     {
         vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
     }
