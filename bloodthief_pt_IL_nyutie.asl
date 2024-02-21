@@ -151,7 +151,6 @@ update
     {
         vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
     }
-    print("current.isOnResultScreen: " + current.isOnResultScreen);
 }
 
 start
