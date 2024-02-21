@@ -55,6 +55,11 @@ state("bloodthief_v0.01", "patch 0.1.22") // ✔
     double timer: 0x420DE40, 0x278, 0x0, 0x68, 0x28, 0xC8;
 }
 
+state("bloodthief_v0.01", "patch 0.1.23") // ✔
+{
+    double timer: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0xC8;
+}
+
 startup
 {    
     vars.TimerModel = new TimerModel { CurrentState = timer };
@@ -89,7 +94,8 @@ init {
         { "AA70BCB791ABC3580D8930AD60ECD3E0", "patch 0.1.19" },
         { "FA582A558AA3DD2B5098E092FF580489", "patch 0.1.19 fixed timer" },
         { "754C7DED8F4298C1F1513B8F634F36E3", "patch 0.1.19 fixed lb"},
-        { "CC2A561F7FFF277AFC60FE87BDF85942", "patch 0.1.22"}
+        { "CC2A561F7FFF277AFC60FE87BDF85942", "patch 0.1.22"},
+        { "26FAC91351E4C07365AB7F768D484D9E", "patch 0.1.23"}
     };
 
     string pckMD5Hash; // get hash of .pck file of game
