@@ -103,6 +103,12 @@ state("bloodthief_v0.01", "patch 0.1.25") // ✔
     bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
 }
 
+state("bloodthief_v0.01", "patch 0.1.26") // ✔
+{
+    double timer: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0xC8;
+    int checkpointID: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0x158;
+    bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
+}
 
 startup
 {
@@ -147,7 +153,8 @@ init {
         { "CC2A561F7FFF277AFC60FE87BDF85942", "patch 0.1.22"},
         { "26FAC91351E4C07365AB7F768D484D9E", "patch 0.1.23"},
         { "8D79D74C9D8E61218F1D9AE0418E56B4", "patch 0.1.24"},
-        { "F4FCA3C796C86E385F74E3E4BFD81736", "patch 0.1.25"}
+        { "F4FCA3C796C86E385F74E3E4BFD81736", "patch 0.1.25"},
+        { "BF0E2B3107FD434C0F5BDEF983106EC3", "patch 0.1.26"}
     };
 
     string pckMD5Hash; // get hash of .pck file of game
