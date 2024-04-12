@@ -200,11 +200,11 @@ update
     }
 
     // uncomment for testing pointers
-    print(
-        "timer: '" + current.timer + "'\n" +
-        "checkpointID: '" + current.checkpointID + "'\n" +
-        "isOnResultScreen: '" + current.isOnResultScreen + "'\n"
-    );
+    // print(
+    //     "timer: '" + current.timer + "'\n" +
+    //     "checkpointID: '" + current.checkpointID + "'\n" +
+    //     "isOnResultScreen: '" + current.isOnResultScreen + "'\n"
+    // );
 }
 
 start
