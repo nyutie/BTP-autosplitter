@@ -190,6 +190,13 @@ update
     {
         vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
     }
+
+    // uncomment for testing pointers
+    // print(
+    //     "timer: '" + current.timer + "'\n" +
+    //     "checkpointID: '" + current.checkpointID + "'\n" +
+    //     "isOnResultScreen: '" + current.isOnResultScreen + "'\n"
+    // );
 }
 
 start
