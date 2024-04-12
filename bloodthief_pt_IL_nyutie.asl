@@ -110,6 +110,27 @@ state("bloodthief_v0.01", "patch 0.1.26") // ✔
     bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
 }
 
+state("bloodthief_v0.01", "patch 0.1.27") // ✔
+{
+    double timer: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0xC8;
+    int checkpointID: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0x158;
+    bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
+}
+
+state("bloodthief_v0.01", "patch 0.1.28") // ✔
+{
+    double timer: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0xC8;
+    int checkpointID: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0x158;
+    bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
+}
+
+state("bloodthief_v0.01", "patch 0.1.29") // ✔
+{
+    double timer: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0xB0; // decreased by 0x18
+    int checkpointID: 0x339C5F0, 0x310, 0x0, 0x68, 0x28, 0x140; // decreased by 0x18
+    bool isOnResultScreen: 0x339C5F0, 0x310, 0x8, 0x288, 0x454;
+}
+
 startup
 {
     vars.TimerModel = new TimerModel { CurrentState = timer };
@@ -154,7 +175,10 @@ init {
         { "26FAC91351E4C07365AB7F768D484D9E", "patch 0.1.23"},
         { "8D79D74C9D8E61218F1D9AE0418E56B4", "patch 0.1.24"},
         { "F4FCA3C796C86E385F74E3E4BFD81736", "patch 0.1.25"},
-        { "BF0E2B3107FD434C0F5BDEF983106EC3", "patch 0.1.26"}
+        { "BF0E2B3107FD434C0F5BDEF983106EC3", "patch 0.1.26"},
+        { "67A67C0A773A084445681504FF94C031", "patch 0.1.27"},
+        { "3FD02465FB406BC9E5730B54879B6EC3", "patch 0.1.28"},
+        { "CFBEF779503F945DED233E8754C45044", "patch 0.1.29"}
     };
 
     string pckMD5Hash; // get hash of .pck file of game
@@ -174,6 +198,13 @@ update
     {
         vars.TimerModel.Reset(); // so you don't have to reset manually after beating level
     }
+
+    // uncomment for testing pointers
+    print(
+        "timer: '" + current.timer + "'\n" +
+        "checkpointID: '" + current.checkpointID + "'\n" +
+        "isOnResultScreen: '" + current.isOnResultScreen + "'\n"
+    );
 }
 
 start
